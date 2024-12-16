@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Jardines - Jardines Urbanos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="layout.js"></script>
+    <script src="dashboard.js"></script>
+    <!-- Definir la función toggleView en el head para asegurar que esté disponible -->
+</head>
+
+<body class="bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Encabezado -->
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-gray-900">Configuración de la Cuenta</h1>
+            <p class="text-gray-600">Administra tu perfil, pagos y suscripciones</p>
+        </div>
+
+        <!-- Tabs de navegación -->
+        <div class="bg-white rounded-lg shadow mb-6">
+            <nav class="flex border-b">
+                <button onclick="toggleSettingsTab('profile')" id="profileTabBtn"
+                    class="flex-1 py-4 px-6 text-sm font-medium text-green-600 bg-white border-b-2 border-green-600 focus:outline-none">
+                    Perfil
+                </button>
+                <button onclick="toggleSettingsTab('security')" id="securityTabBtn"
+                    class="flex-1 py-4 px-6 text-sm font-medium text-gray-500 bg-gray-50 hover:text-gray-700 focus:outline-none">
+                    Contraseña y Seguridad
+                </button>
+                <button onclick="toggleSettingsTab('payments')" id="paymentsTabBtn"
+                    class="flex-1 py-4 px-6 text-sm font-medium text-gray-500 bg-gray-50 hover:text-gray-700 focus:outline-none">
+                    Métodos de Pago
+                </button>
+                <button onclick="toggleSettingsTab('subscription')" id="subscriptionTabBtn"
+                    class="flex-1 py-4 px-6 text-sm font-medium text-gray-500 bg-gray-50 hover:text-gray-700 focus:outline-none">
+                    Suscripción
+                </button>
+                <button onclick="toggleSettingsTab('notifications')" id="notificationsTabBtn"
+                    class="flex-1 py-4 px-6 text-sm font-medium text-gray-500 bg-gray-50 hover:text-gray-700 focus:outline-none">
+                    Notificaciones
+                </button>
+            </nav>
+        </div>
+
+        <!-- Contenido de las pestañas -->
+        <div class="mt-6">
+            <!-- Vista de Perfil -->
+            <div id="profileTabContent" class="bg-white rounded-lg shadow-md">
+                <div class="p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Información Personal</h2>
+                    <div class="flex items-center">
+                        <img src="/api/placeholder/80/80" alt="Foto de perfil" class="h-20 w-20 rounded-full">
+                        <div class="ml-6">
+                            <button
+                                class="bg-white py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                Cambiar foto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                            <input type="text" value="María"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Apellidos</label>
+                            <input type="text" value="García"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" value="maria@ejemplo.com"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+                            <input type="tel" value="+34 600 000 000"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-end">
+                        <button class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                            Guardar cambios
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Contraseña -->
+            <div id="securityTabContent" class="hidden bg-white rounded-lg shadow-md">
+                <!-- Seguridad -->
+                <div class="p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Seguridad</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Contraseña actual</label>
+                            <input type="password"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Nueva contraseña</label>
+                            <input type="password"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Confirmar nueva
+                                contraseña</label>
+                            <input type="password"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Métodos de Pago -->
+            <div id="paymentsTabContent" class="hidden bg-white rounded-lg shadow-md">
+                <!-- Métodos de Pago -->
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-medium text-gray-900">Métodos de Pago</h2>
+                        <button class="bg-green-600 py-2 px-4 text-white rounded-md hover:bg-green-700">
+                            Añadir tarjeta
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <!-- Tarjeta guardada -->
+                        <div class="border rounded-lg p-4 flex justify-between items-center">
+                            <div class="flex items-center">
+                                <img src="/api/placeholder/40/24" alt="Visa" class="h-6">
+                                <span class="ml-4 text-gray-900">•••• •••• •••• 4242</span>
+                                <span class="ml-4 text-gray-500">Expira 12/24</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full mr-4">
+                                    Principal
+                                </span>
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Suscripción -->
+            <div id="subscriptionTabContent" class="hidden bg-white rounded-lg shadow-md">
+                <!-- Suscripción -->
+                <div class=" p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Plan de Suscripción</h2>
+
+                    <!-- Plan actual -->
+                    <div class="bg-green-50 rounded-lg p-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-base font-medium text-green-800">Plan Básico</h3>
+                                <p class="text-sm text-green-700 mt-1">Activo hasta: 23 de Diciembre, 2024</p>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                                Activo
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Planes disponibles -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Plan Básico -->
+                    <div class="border rounded-lg p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Básico</h3>
+                        <p class="mt-2 text-2xl font-bold text-gray-900">4.99€<span
+                                class="text-base font-normal text-gray-500">/mes</span></p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                2 consultas al mes
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Acceso a guías básicas
+                            </li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full bg-gray-100 py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            Plan actual
+                        </button>
+                    </div>
+
+                    <!-- Plan Pro -->
+                    <div class="border rounded-lg p-6 border-green-500 shadow-sm">
+                        <div class="absolute top-0 right-0 -mt-2 -mr-2">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                                Popular
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900">Pro</h3>
+                        <p class="mt-2 text-2xl font-bold text-gray-900">9.99€<span
+                                class="text-base font-normal text-gray-500">/mes</span></p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Consultas ilimitadas
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Respuesta prioritaria
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Acceso a todo el contenido
+                            </li>
+                        </ul>
+                        <button class="mt-6 w-full bg-green-600 py-2 px-4 text-white rounded-md hover:bg-green-700">
+                            Actualizar plan
+                        </button>
+                    </div>
+
+                    <!-- Plan Premium -->
+                    <div class="border rounded-lg p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Premium</h3>
+                        <p class="mt-2 text-2xl font-bold text-gray-900">19.99€<span
+                                class="text-base font-normal text-gray-500">/mes</span></p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Todo lo del plan Pro
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Asesor personal
+                            </li>
+                            <li class="flex items-center text-sm text-gray-600">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Visitas presenciales
+                            </li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full bg-white py-2 px-4 border border-green-600 text-green-600 rounded-md hover:bg-green-50">
+                            Actualizar plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Notificaciones -->
+            <div id="notificationsTabContent" class="hidden bg-white rounded-lg shadow-md">
+                <!-- Preferencias de Notificaciones -->
+                <div class="p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Preferencias de Notificaciones</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-900">Recordatorios de riego</h3>
+                                <p class="text-sm text-gray-500">Recibe notificaciones cuando tus plantas
+                                    necesiten agua</p>
+                            </div>
+                            <button
+                                class="bg-green-600 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none">
+                                <span
+                                    class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow"></span>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-900">Actualizaciones de consultas</h3>
+                                <p class="text-sm text-gray-500">Recibe notificaciones cuando respondan a tus
+                                    consultas</p>
+                            </div>
+                            <button
+                                class="bg-green-600 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none">
+                                <span
+                                    class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow"></span>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-900">Ofertas y novedades</h3>
+                                <p class="text-sm text-gray-500">Recibe información sobre nuevos productos y
+                                    ofertas especiales</p>
+                            </div>
+                            <button
+                                class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none">
+                                <span
+                                    class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white shadow"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eliminar Cuenta -->
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-grow">
+                            <h2 class="text-lg font-medium text-red-600">Eliminar cuenta</h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Una vez que elimines tu cuenta, perderás todo tu historial y datos. Esta acción
+                                no se puede deshacer.
+                            </p>
+                        </div>
+                        <button class="ml-4 px-4 py-2 border border-red-600 text-red-600 rounded-md hover:bg-red-50">
+                            Eliminar cuenta
+                        </button>
+                    </div>
+                </div>
+                <!-- Modal de Nueva Tarjeta (normalmente oculto) -->
+                <div class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                    <div class="bg-white rounded-lg max-w-md w-full p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold text-gray-900">Añadir nueva tarjeta</h2>
+                            <button class="text-gray-400 hover:text-gray-500">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Número de tarjeta</label>
+                                <input type="text" placeholder="1234 1234 1234 1234"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Fecha de expiración</label>
+                                    <input type="text" placeholder="MM/YY"
+                                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">CVC</label>
+                                    <input type="text" placeholder="123"
+                                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Nombre en la tarjeta</label>
+                                <input type="text" placeholder="MARÍA GARCÍA"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            <div class="flex justify-end space-x-3">
+                                <button type="button"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    Cancelar
+                                </button>
+                                <button type="submit"
+                                    class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                                    Añadir tarjeta
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

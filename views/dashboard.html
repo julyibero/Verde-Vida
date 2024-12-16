@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Jardines Urbanos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="layout.js"></script>
+    <script src="dashboard.js"></script>
+    
+</head>
+
+<body class="bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+    <div class="space-y-8">
+
+    <h1 class="text-2xl font-bold text-gray-900">¡Bienvenida de nuevo, María!</h1>
+                <p class="text-gray-600">Aquí tienes el resumen de todos tus jardines y actividades pendientes.</p>
+
+                <!-- Resumen general -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-green-100 rounded-md p-3">
+                    <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                </div>
+                <div class="ml-5">
+                    <h3 class="text-gray-900 text-lg">Total Jardines</h3>
+                    <p class="mt-2 text-3xl font-bold text-green-600">3</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-purple-100 rounded-md p-3">
+                    <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                </div>
+                <div class="ml-5">
+                    <h3 class="text-gray-900 text-lg">Total Plantas</h3>
+                    <p class="mt-2 text-3xl font-bold text-purple-600">24</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-yellow-100 rounded-md p-3">
+                    <svg class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="ml-5">
+                    <h3 class="text-gray-900 text-lg">Tareas Hoy</h3>
+                    <p class="mt-2 text-3xl font-bold text-yellow-600">5</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 bg-blue-100 rounded-md p-3">
+                    <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                </div>
+                <div class="ml-5">
+                    <h3 class="text-gray-900 text-lg">Consultas Activas</h3>
+                    <p class="mt-2 text-3xl font-bold text-blue-600">2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Vista rápida de Jardines -->
+    <div class="mb-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold text-gray-900">Mis Jardines</h2>
+            <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex items-center">
+                <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Nuevo Jardín
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Jardín Card -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Casa Principal</h3>
+                            <p class="text-sm text-gray-500">3 espacios • 12 plantas</p>
+                        </div>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                            Todo en orden
+                        </span>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <p class="text-gray-500">Próximo riego</p>
+                            <p class="font-medium text-gray-900">Hoy (2 plantas)</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Última actividad</p>
+                            <p class="font-medium text-gray-900">Hace 2 horas</p>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="#" class="text-green-600 hover:text-green-700 font-medium">Ver jardín →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Más jardines... -->
+        </div>
+    </div>
+
+    <!-- Actividades Pendientes -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+        <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-xl font-bold text-gray-900">Actividades Pendientes de Hoy</h2>
+        </div>
+        <div class="p-6">
+            <div class="space-y-4">
+                <!-- Actividad -->
+                <div class="flex items-center justify-between border-b border-gray-200 pb-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex-shrink-0">
+                            <span
+                                class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-900">Regar Orquídeas</h4>
+                            <p class="text-sm text-gray-500">Casa Principal - Sala</p>
+                        </div>
+                    </div>
+                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 text-sm">
+                        Completar
+                    </button>
+                </div>
+                <!-- Más actividades... -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Últimas Consultas -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-xl font-bold text-gray-900">Últimas Consultas</h2>
+            <a href="#" class="text-green-600 hover:text-green-700 text-sm">Ver todas</a>
+        </div>
+        <div class="p-6">
+            <div class="space-y-4">
+                <!-- Consulta -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                        <div>
+                            <h4 class="text-sm font-medium text-gray-900">Problema con hojas amarillas</h4>
+                            <p class="text-sm text-gray-500">Casa Principal - Orquídea</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                        En revisión
+                    </span>
+                </div>
+                <!-- Más consultas... -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jardines Urbanos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="layout.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div id="header-container"></div>
+
+
+    <!-- Contenido principal -->
+    <main class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <!-- Tabs de Login/Registro -->
+            <div class="bg-white rounded-t-lg border-b">
+                <div class="flex">
+                    <button id="loginTab" onclick="toggleView('login')" 
+                        class="flex-1 py-4 px-6 text-sm font-medium hover:text-gray-700 text-green-600 bg-white rounded-tl-lg border-b-2 border-green-600 focus:outline-none">
+                        Iniciar Sesión
+                    </button>
+                    <button id="registerTab" onclick="toggleView('register')"
+                        class="flex-1 py-4 px-6 text-sm font-medium text-gray-500 bg-gray-50 rounded-tr-lg hover:text-gray-700 focus:outline-none">
+                        Registrarse
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulario de Login -->
+            <div id="loginForm" class="bg-white shadow rounded-b-lg px-8 py-10">
+                <div class="mb-8 text-center">
+                    <h2 class="text-3xl font-bold text-gray-900">
+                        Bienvenido de nuevo
+                    </h2>
+                    <p class="mt-2 text-sm text-gray-600">
+                        Accede a tu cuenta para gestionar tus plantas
+                    </p>
+                </div>
+
+                <form class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">
+                            Correo electrónico
+                        </label>
+                        <div class="mt-1">
+                            <input id="email" name="email" type="email" required 
+                                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">
+                            Contraseña
+                        </label>
+                        <div class="mt-1">
+                            <input id="password" name="password" type="password" required
+                                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="remember-me" type="checkbox"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+                                Recordarme
+                            </label>
+                        </div>
+
+                        <div class="text-sm">
+                            <a href="#" class="font-medium text-green-600 hover:text-green-500">
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                </form>
+
+                <!-- <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">
+                                O continúa con
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <button
+                            class="w-full flex items-center justify-center py-2 px-4 border rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <img src="/api/placeholder/20/20" alt="Google" class="h-5 w-5 mr-2">
+                            Google
+                        </button>
+                        <button
+                            class="w-full flex items-center justify-center py-2 px-4 border rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <img src="/api/placeholder/20/20" alt="Facebook" class="h-5 w-5 mr-2">
+                            Facebook
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Formulario de Registro (inicialmente oculto) -->
+            <div id="registerForm" class=" bg-white shadow rounded-b-lg px-8 py-10 hidden">
+                <div class="mb-8 text-center">
+                    <h2 class="text-3xl font-bold text-gray-900">
+                        Crea tu cuenta
+                    </h2>
+                    <p class="mt-2 text-sm text-gray-600">
+                        Únete a nuestra comunidad de amantes de las plantas
+                    </p>
+                </div>
+
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">
+                                Nombre
+                            </label>
+                            <input type="text" required
+                                class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">
+                                Apellidos
+                            </label>
+                            <input type="text" required
+                                class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Correo electrónico
+                        </label>
+                        <input type="email" required
+                            class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Contraseña
+                        </label>
+                        <input type="password" required
+                            class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Confirmar contraseña
+                        </label>
+                        <input type="password" required
+                            class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+
+                    <div class="flex items-center">
+                        <input type="checkbox" required
+                            class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                        <label class="ml-2 block text-sm text-gray-900">
+                            Acepto los <a href="#" class="text-green-600 hover:text-green-500">términos y condiciones</a>
+                        </label>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Registrarse
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </main>
+    <script>
+        function toggleView(view) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+    
+            if (view === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                // Actualizar estilos de los tabs
+                loginTab.classList.remove('text-gray-500', 'bg-gray-50');
+                loginTab.classList.add('text-green-600', 'bg-white', 'border-b-2', 'border-green-600');
+                registerTab.classList.remove('text-green-600', 'bg-white', 'border-b-2', 'border-green-600');
+                registerTab.classList.add('text-gray-500', 'bg-gray-50');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                // Actualizar estilos de los tabs
+                registerTab.classList.remove('text-gray-500', 'bg-gray-50');
+                registerTab.classList.add('text-green-600', 'bg-white', 'border-b-2', 'border-green-600');
+                loginTab.classList.remove('text-green-600', 'bg-white', 'border-b-2', 'border-green-600');
+                loginTab.classList.add('text-gray-500', 'bg-gray-50');
+            }
+        }
+    </script>
+
+    <div id="footer-container"></div>
+    
+
+ 
+</body>
+</html>

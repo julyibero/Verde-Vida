@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Jardines - Jardines Urbanos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="layout.js"></script>
+</head>
+
+<body class="bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+        <!-- Encabezado -->
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-gray-900">Mi Carrito</h1>
+            <p class="text-gray-600">2 productos en tu carrito</p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Lista de productos -->
+            <div class="flex-grow">
+                <div class="bg-white rounded-lg shadow">
+                    <!-- Encabezado de la tabla -->
+                    <div class="border-b border-gray-200 px-6 py-4">
+                        <div class="grid grid-cols-12 gap-4">
+                            <div class="col-span-6">
+                                <h3 class="text-sm font-medium text-gray-900">Producto</h3>
+                            </div>
+                            <div class="col-span-2 text-center">
+                                <h3 class="text-sm font-medium text-gray-900">Cantidad</h3>
+                            </div>
+                            <div class="col-span-2 text-center">
+                                <h3 class="text-sm font-medium text-gray-900">Precio</h3>
+                            </div>
+                            <div class="col-span-2 text-right">
+                                <h3 class="text-sm font-medium text-gray-900">Total</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lista de productos -->
+                    <div class="divide-y divide-gray-200">
+                        <!-- Producto 1 -->
+                        <div class="px-6 py-4">
+                            <div class="grid grid-cols-12 gap-4 items-center">
+                                <div class="col-span-6">
+                                    <div class="flex items-center">
+                                        <img src="200(1).png" alt="Producto" class="h-20 w-20 rounded-lg object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="text-sm font-medium text-gray-900">Orquídea Phalaenopsis</h4>
+                                            <p class="mt-1 text-sm text-gray-500">Color: Blanco</p>
+                                            <p class="mt-1 text-sm text-gray-500">Tamaño: Mediana</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2">
+                                    <div class="flex items-center justify-center">
+                                        <button class="p-1 text-gray-500 hover:text-gray-600">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 12H4" />
+                                            </svg>
+                                        </button>
+                                        <span class="mx-3 text-gray-900">1</span>
+                                        <button class="p-1 text-gray-500 hover:text-gray-600">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center">
+                                    <span class="text-sm font-medium text-gray-900">29.99€</span>
+                                </div>
+                                <div class="col-span-2 text-right">
+                                    <span class="text-sm font-medium text-gray-900">29.99€</span>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="mt-4 flex justify-end space-x-4">
+                                <button class="text-sm text-gray-500 hover:text-gray-700 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
+                                    Guardar para después
+                                </button>
+                                <button class="text-sm text-red-500 hover:text-red-700 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Producto 2 -->
+                        <div class="px-6 py-4">
+                            <div class="grid grid-cols-12 gap-4 items-center">
+                                <div class="col-span-6">
+                                    <div class="flex items-center">
+                                        <img src="200(1).png" alt="Producto" class="h-20 w-20 rounded-lg object-cover">
+                                        <div class="ml-4">
+                                            <h4 class="text-sm font-medium text-gray-900">Maceta Decorativa</h4>
+                                            <p class="mt-1 text-sm text-gray-500">Material: Cerámica</p>
+                                            <p class="mt-1 text-sm text-gray-500">Tamaño: 20cm</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2">
+                                    <div class="flex items-center justify-center">
+                                        <button class="p-1 text-gray-500 hover:text-gray-600">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 12H4" />
+                                            </svg>
+                                        </button>
+                                        <span class="mx-3 text-gray-900">1</span>
+                                        <button class="p-1 text-gray-500 hover:text-gray-600">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 text-center">
+                                    <span class="text-sm font-medium text-gray-900">29.99€</span>
+                                </div>
+                                <div class="col-span-2 text-right">
+                                    <span class="text-sm font-medium text-gray-900">29.99€</span>
+                                </div>
+
+                                <!-- Resto similar al producto 1 -->
+                            </div>
+                            <div class="mt-4 flex justify-end space-x-4">
+                                <button class="text-sm text-gray-500 hover:text-gray-700 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
+                                    Guardar para después
+                                </button>
+                                <button class="text-sm text-red-500 hover:text-red-700 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Productos relacionados -->
+                <div class="mt-8">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Productos Relacionados</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- Producto relacionado -->
+                        <div class="bg-white rounded-lg shadow p-4">
+                            <img src="400.png" alt="Producto" class="w-full h-32 object-cover rounded-lg mb-4">
+                            <h3 class="text-sm font-medium text-gray-900">Sustrato Premium</h3>
+                            <p class="text-sm text-gray-500">19.99€</p>
+                            <button
+                                class="mt-2 w-full py-2 px-4 border border-green-600 text-green-600 rounded-md hover:bg-green-50">
+                                Añadir al carrito
+                            </button>
+                        </div>
+                        <!-- Más productos relacionados... -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen del pedido -->
+            <div class="w-full lg:w-96">
+                <div class="bg-white rounded-lg shadow p-6 sticky top-8">
+                    <h2 class="text-lg font-medium text-gray-900 mb-6">Resumen del Pedido</h2>
+
+                    <!-- Detalles del pedido -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Subtotal (3 productos)</span>
+                            <span class="text-gray-900 font-medium">89.97€</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Envío</span>
+                            <span class="text-gray-900 font-medium">4.99€</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Impuestos</span>
+                            <span class="text-gray-900 font-medium">19.89€</span>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <div class="flex justify-between">
+                                <span class="text-base font-medium text-gray-900">Total</span>
+                                <span class="text-base font-medium text-gray-900">114.85€</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cupón de descuento -->
+                    <div class="mt-6">
+                        <div class="flex">
+                            <input type="text" placeholder="Código de descuento"
+                                class="flex-1 px-4 py-2 border rounded-l focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <button class="px-4 py-2 bg-green-600 text-white rounded-r hover:bg-green-700">
+                                Aplicar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Botón de checkout -->
+                    <div class="mt-6">
+                        <button
+                            class="w-full py-3 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 flex items-center justify-center">
+                            <span>Proceder al pago</span>
+                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Métodos de pago aceptados -->
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500 text-center">Métodos de pago aceptados</p>
+                        <div class="mt-2 flex justify-center space-x-2">
+                            <img src="200(1).png" alt="Visa" class="h-5">
+                            <img src="200(1).png" alt="Mastercard" class="h-5">
+                            <img src="200(1).png" alt="PayPal" class="h-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>

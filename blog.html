@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Jardines Urbanos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="layout.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section del Blog -->
+    <div class="bg-green-600 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h1 class="text-4xl font-bold mb-4">Blog de Jardinería Urbana</h1>
+            <p class="text-xl">Descubre consejos, guías y trucos para crear y mantener tu jardín ideal</p>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Barra de búsqueda -->
+        <div class="mb-8">
+            <div class="flex bg-white rounded-lg shadow-md p-4">
+                <input type="text" placeholder="Buscar artículos..." class="w-full px-4 py-2 rounded-l border focus:outline-none focus:border-green-500">
+                <button class="px-6 py-2 bg-green-600 text-white rounded-r hover:bg-green-700">
+                    Buscar
+                </button>
+            </div>
+        </div>
+
+        <!-- Grid de contenido principal -->
+        <div class="flex gap-8">
+            <!-- Sidebar con filtros -->
+            <div class="w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold mb-4">Categorías</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-green-600">Guías Básicas</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600">Plantas de Interior</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600">Plantas de Exterior</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600">Huerto Urbano</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-green-600">DIY y Proyectos</a></li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold mt-8 mb-4">Filtrar por</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-medium mb-2">Nivel de Experiencia</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="level1" class="mr-2">
+                                    <label for="level1">Principiante</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="level2" class="mr-2">
+                                    <label for="level2">Intermedio</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="level3" class="mr-2">
+                                    <label for="level3">Avanzado</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-medium mb-2">Espacio Disponible</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="space1" class="mr-2">
+                                    <label for="space1">Balcón</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="space2" class="mr-2">
+                                    <label for="space2">Terraza</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="space3" class="mr-2">
+                                    <label for="space3">Jardín</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="space4" class="mr-2">
+                                    <label for="space4">Interior</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-medium mb-2">Luz Disponible</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="light1" class="mr-2">
+                                    <label for="light1">Sol directo</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="light2" class="mr-2">
+                                    <label for="light2">Semi sombra</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="light3" class="mr-2">
+                                    <label for="light3">Sombra</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tags populares -->
+                <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+                    <h3 class="text-lg font-bold mb-4">Tags Populares</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-green-100">Suculentas</a>
+                        <a href="#" class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-green-100">Riego</a>
+                        <a href="#" class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-green-100">Fertilización</a>
+                        <a href="#" class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-green-100">Plagas</a>
+                        <a href="#" class="px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-green-100">Macetas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de artículos -->
+            <div class="flex-1">
+                <!-- Artículos destacados -->
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">Artículos Destacados</h2>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="200.png" alt="Artículo destacado" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <span class="text-green-600 text-sm">Guía Básica</span>
+                            <h3 class="text-xl font-bold mt-2">Cómo Elegir las Plantas Perfectas para tu Espacio</h3>
+                            <p class="text-gray-600 mt-2">Una guía completa para seleccionar las plantas ideales según tu espacio, luz y estilo de vida...</p>
+                            <a href="#" class="inline-block mt-4 text-green-600 hover:text-green-700">Leer más →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de artículos regulares -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Artículo (repetir según necesidad) -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="200.png" alt="Artículo" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-green-600 text-sm">Plantas de Interior</span>
+                            <h3 class="font-bold mt-2">Guía de Cuidados para Plantas de Interior</h3>
+                            <p class="text-gray-600 text-sm mt-2">Aprende los cuidados básicos para mantener tus plantas de interior...</p>
+                            <a href="#" class="inline-block mt-4 text-green-600 hover:text-green-700">Leer más →</a>
+                        </div>
+                    </div>
+                    <!-- Más artículos... -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="200.png" alt="Artículo" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-green-600 text-sm">Plantas de Interior</span>
+                            <h3 class="font-bold mt-2">Guía de Cuidados para Plantas de Interior</h3>
+                            <p class="text-gray-600 text-sm mt-2">Aprende los cuidados básicos para mantener tus plantas de interior...</p>
+                            <a href="#" class="inline-block mt-4 text-green-600 hover:text-green-700">Leer más →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paginación -->
+                <div class="mt-8 flex justify-center">
+                    <nav class="flex space-x-2">
+                        <a href="#" class="px-4 py-2 border rounded hover:bg-green-600 hover:text-white">1</a>
+                        <a href="#" class="px-4 py-2 border rounded hover:bg-green-600 hover:text-white">2</a>
+                        <a href="#" class="px-4 py-2 border rounded hover:bg-green-600 hover:text-white">3</a>
+                        <span class="px-4 py-2">...</span>
+                        <a href="#" class="px-4 py-2 border rounded hover:bg-green-600 hover:text-white">10</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Newsletter -->
+    <section class="bg-green-600 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4">¿Quieres recibir consejos de jardinería?</h2>
+            <p class="mb-6">Suscríbete a nuestro newsletter y recibe consejos semanales para cuidar tu jardín</p>
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Tu email" class="flex-1 px-4 py-2 rounded-l text-gray-900">
+                <button class="px-6 py-2 bg-gray-800 text-white rounded-r hover:bg-gray-700">
+                    Suscribirse
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+</body>
+</html>

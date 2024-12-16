@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Jardines - Jardines Urbanos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="layout.js"></script>
+</head>
+
+<body class="bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+        <!-- Encabezado -->
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-gray-900">Centro de Ayuda</h1>
+            <p class="text-gray-600">Encuentra respuestas o crea una consulta personalizada</p>
+        </div>
+
+        <!-- Buscador Principal -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">¿Qué problema tienes con tu planta?</h2>
+            <div class="flex gap-4">
+                <div class="flex-1">
+                    <input type="text" placeholder="Ej: hojas amarillas, plagas, riego..."
+                        class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <button class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    Buscar solución
+                </button>
+            </div>
+            <!-- Tags populares -->
+            <div class="mt-4">
+                <p class="text-sm text-gray-600 mb-2">Búsquedas populares:</p>
+                <div class="flex flex-wrap gap-2">
+                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200">
+                        Hojas amarillas
+                    </button>
+                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200">
+                        Riego excesivo
+                    </button>
+                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200">
+                        Plagas comunes
+                    </button>
+                    <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200">
+                        Trasplante
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados de búsqueda y recursos -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Artículos relacionados -->
+            <div class="md:col-span-2 space-y-6">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Artículos relacionados</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <!-- Artículo -->
+                        <div class="flex items-start border-b border-gray-200 pb-4">
+                            <div class="flex-shrink-0">
+                                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
+                                    <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-base font-medium text-gray-900">
+                                    <a href="#" class="hover:text-green-600">Guía completa: ¿Por qué se ponen
+                                        amarillas las hojas?</a>
+                                </h4>
+                                <p class="mt-1 text-sm text-gray-500">Diagnóstico y soluciones para el
+                                    amarillamiento de hojas en plantas de interior.</p>
+                                <div class="mt-2 flex items-center text-sm text-gray-500">
+                                    <span>Última actualización: 2 días atrás</span>
+                                    <span class="mx-2">•</span>
+                                    <span>Leído por 234 usuarios</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Más artículos... -->
+                    </div>
+                    <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <a href="#" class="text-green-600 hover:text-green-700">Ver todos los artículos →</a>
+                    </div>
+                </div>
+
+                <!-- Preguntas frecuentes -->
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Preguntas frecuentes</h3>
+                    </div>
+                    <div class="divide-y divide-gray-200">
+                        <div class="p-6">
+                            <button class="flex w-full items-center justify-between text-left">
+                                <span class="text-base font-medium text-gray-900">¿Cada cuánto debo regar mi
+                                    planta?</span>
+                                <svg class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Más preguntas... -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de consulta personalizada -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">¿No encontraste la solución?</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-600 mb-4">Crea una consulta personalizada y nuestros
+                            expertos te ayudarán.</p>
+                        <button class="w-full py-3 px-4 bg-green-600 text-white rounded-md hover:bg-green-700">
+                            Crear consulta personalizada
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mis consultas activas -->
+                <div class="mt-6 bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Mis consultas activas</h3>
+                    </div>
+                    <div class="divide-y divide-gray-200">
+                        <div class="p-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-900">Problema con hojas</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Creada hace 2 días</p>
+                                </div>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                                    En proceso
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Más consultas... -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Nueva Consulta (normalmente oculto) -->
+        <div class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+            <div class="bg-white rounded-lg max-w-2xl w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-gray-900">Nueva Consulta Personalizada</h2>
+                    <button class="text-gray-400 hover:text-gray-500">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form class="space-y-6">
+                    <!-- Selección de Jardín y Planta -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Selecciona el jardín</label>
+                            <select
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                                <option>Casa Principal</option>
+                                <option>Jardín Terraza</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Selecciona la planta</label>
+                            <select
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                                <option>Orquídea Blanca</option>
+                                <option>Monstera</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tipo de problema -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tipo de problema</label>
+                        <select
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                            <option>Problemas con hojas</option>
+                            <option>Plagas</option>
+                            <option>Riego</option>
+                            <option>Trasplante</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Describe el problema</label>
+                        <textarea rows="4"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                            placeholder="Proporciona todos los detalles posibles sobre el problema..."></textarea>
+                    </div>
+
+                    <!-- Fotos -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Adjuntar fotos</label>
+                        <div class="mt-1 border-2 border-dashed border-gray-300 rounded-md p-6">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                    viewBox="0 0 48 48">
+                                    <!-- SVG path -->
+                                </svg>
+                                <div class="mt-4 flex justify-center text-sm text-gray-600">
+                                    <label
+                                        class="relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500">
+                                        <span>Sube una foto</span>
+                                        <input type="file" class="sr-only" multiple accept="image/*">
+                                    </label>
+                                    <p class="pl-1">o arrastra y suelta</p>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG hasta 10MB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" class="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                            Enviar consulta
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
