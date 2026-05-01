@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jardines Urbanos</title>
+    <title>Verde Vida - Vivero Online</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <script src="layout.js"></script>
+    <script src="/js/layout.js"></script>
     <style>
         .carousel-container {
             position: relative;
@@ -40,29 +40,29 @@
 </head>
 
 <body class="bg-gray-100">
-    <!-- Barra de navegación superior -->
+    <!-- Barra de navegacion superior -->
     <div id="header-container"></div>
 
-    <!-- Carrusel de Tips y Consejos -->
+    <!-- Carrusel de 3 pilares -->
     <div class="max-w-6xl mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-md p-8 mb-12">
             <div class="carousel-container h-64">
                 <div class="carousel-item active">
-                    <div class="bg-gray-50 p-8 rounded-lg h-full flex flex-col justify-center items-center text-center">
-                        <h3 class="text-xl font-bold mb-4">Cómo cuidar tu planta - Tips y Consejos</h3>
-                        <p class="text-gray-600">Consejos esenciales para mantener tus plantas saludables y hermosas</p>
+                    <div class="bg-green-50 p-8 rounded-lg h-full flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-bold mb-4 text-green-800">Conoce nuestras plantas</h3>
+                        <p class="text-gray-600 max-w-lg">Tips y consejos esenciales para mantener tus plantas saludables y hermosas. Te acompañamos en cada paso.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="bg-gray-50 p-8 rounded-lg h-full flex flex-col justify-center items-center text-center">
-                        <h3 class="text-xl font-bold mb-4">Describe tu espacio para jardín</h3>
-                        <p class="text-gray-600">Aprende a optimizar y diseñar el espacio perfecto para tu jardín</p>
+                    <div class="bg-green-50 p-8 rounded-lg h-full flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-bold mb-4 text-green-800">Aprende con nosotros</h3>
+                        <p class="text-gray-600 max-w-lg">Divulgacion de conocimientos sobre jardineria urbana, calendarios de riego y soluciones a problemas comunes.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="bg-gray-50 p-8 rounded-lg h-full flex flex-col justify-center items-center text-center">
-                        <h3 class="text-xl font-bold mb-4">Otra cosa</h3>
-                        <p class="text-gray-600">Descubre más consejos y trucos para tu jardín urbano</p>
+                    <div class="bg-green-50 p-8 rounded-lg h-full flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-bold mb-4 text-green-800">Recibe asesoria personalizada</h3>
+                        <p class="text-gray-600 max-w-lg">Describe tu espacio y te ayudamos a elegir las mejores plantas para tu balcon, sala o jardin.</p>
                     </div>
                 </div>
             </div>
@@ -76,57 +76,55 @@
 
     <!-- Contenido principal -->
     <main class="max-w-6xl mx-auto px-4">
-        <!-- Sección de Exterior e Interior -->
+        <!-- Seccion de Exterior e Interior -->
         <div class="grid md:grid-cols-2 gap-8 mb-12">
             <!-- Exterior -->
-
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="400.png" alt="Plantas Exterior" class="w-full h-64 object-cover">
-
+                <img src="/400.png" alt="Plantas Exterior" class="w-full h-64 object-cover">
                 <div class="p-6">
                     <p>
-                        <a href="#"
+                        <a href="/pages/tienda.html"
                             class="bg-green-600 text-white text-2xl font-bold py-2 px-6 rounded hover:bg-green-700">Exterior</a>
-                    </p></br>
+                    </p><br>
                     <p class="text-gray-600">Descubre nuestras opciones para jardines exteriores</p>
                 </div>
             </div>
             <!-- Interior -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="400.png" alt="Plantas Interior" class="w-full h-64 object-cover">
+                <img src="/400.png" alt="Plantas Interior" class="w-full h-64 object-cover">
                 <div class="p-6">
                     <p>
-                        <a href="#"
+                        <a href="/pages/tienda.html"
                             class="bg-green-600 text-white text-2xl font-bold py-2 px-6 rounded hover:bg-green-700">Interior</a>
-                    </p></br>
+                    </p><br>
                     <p class="text-gray-600">Explora nuestras plantas de interior</p>
                 </div>
             </div>
         </div>
 
-        <!-- Sección de inscripción -->
+        <!-- Seccion de invitacion a registrarse -->
         <div class="bg-white rounded-lg shadow-md p-8 mb-12">
-            <h2 class="text-2xl font-bold mb-4">Crea tu cuenta para recibir y conocer cómo cuidar tu jardín</h2>
-            <img src="200.png" alt="Jardines Urbanos" class="w-full h-48 object-cover rounded mb-4">
-            <button class="bg-green-600 text-white py-2 px-6 rounded hover:bg-green-700">
-                Crear cuanta ahora
-            </button>
+            <h2 class="text-2xl font-bold mb-4">Crea tu cuenta para recibir y conocer como cuidar tu jardin</h2>
+            <img src="/200.png" alt="Verde Vida" class="w-full h-48 object-cover rounded mb-4">
+            <a href="/pages/login_register.html" class="inline-block bg-green-600 text-white py-2 px-6 rounded hover:bg-green-700">
+                Crear cuenta ahora
+            </a>
         </div>
 
-        <!-- Sección de Accesorios -->
+        <!-- Seccion de Accesorios -->
         <div class="bg-white rounded-lg shadow-md p-8 mb-12">
             <h2 class="text-2xl font-bold mb-4">Accesorios</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="200(1).png" alt="Accesorio 1" class="w-full rounded">
-                <img src="200(1).png" alt="Accesorio 2" class="w-full rounded">
-                <img src="200(1).png" alt="Accesorio 3" class="w-full rounded">
-                <img src="200(1).png" alt="Accesorio 4" class="w-full rounded">
+                <img src="/200(1).png" alt="Accesorio 1" class="w-full rounded">
+                <img src="/200(1).png" alt="Accesorio 2" class="w-full rounded">
+                <img src="/200(1).png" alt="Accesorio 3" class="w-full rounded">
+                <img src="/200(1).png" alt="Accesorio 4" class="w-full rounded">
             </div>
         </div>
     </main>
 
     <script>
-        // Carrusel automático
+        // Carrusel automatico
         const items = document.querySelectorAll('.carousel-item');
         const indicators = document.querySelectorAll('.carousel-indicator');
         let currentItem = 0;
