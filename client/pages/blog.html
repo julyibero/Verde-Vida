@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Jardines Urbanos</title>
+    <title>Blog - Verde Vida</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="layout.js"></script>
+    <script src="/js/layout.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
@@ -52,7 +52,7 @@
                             <div class="space-y-2">
                                 <div class="flex items-center">
                                     <input type="checkbox" id="level1" class="mr-2">
-                                    <label for="level1">Principiante</label>
+                                    <label for="level1">Fácil</label>
                                 </div>
                                 <div class="flex items-center">
                                     <input type="checkbox" id="level2" class="mr-2">
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="flex items-center">
                                     <input type="checkbox" id="level3" class="mr-2">
-                                    <label for="level3">Avanzado</label>
+                                    <label for="level3">Experto</label>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                 <div class="mb-12">
                     <h2 class="text-2xl font-bold mb-6">Artículos Destacados</h2>
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="200.png" alt="Artículo destacado" class="w-full h-64 object-cover">
+                        <img src="/200.png" alt="Artículo destacado" class="w-full h-64 object-cover">
                         <div class="p-6">
                             <span class="text-green-600 text-sm">Guía Básica</span>
                             <h3 class="text-xl font-bold mt-2">Cómo Elegir las Plantas Perfectas para tu Espacio</h3>
@@ -140,7 +140,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Artículo (repetir según necesidad) -->
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="200.png" alt="Artículo" class="w-full h-48 object-cover">
+                        <img src="/200.png" alt="Artículo" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <span class="text-green-600 text-sm">Plantas de Interior</span>
                             <h3 class="font-bold mt-2">Guía de Cuidados para Plantas de Interior</h3>
@@ -150,7 +150,7 @@
                     </div>
                     <!-- Más artículos... -->
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="200.png" alt="Artículo" class="w-full h-48 object-cover">
+                        <img src="/200.png" alt="Artículo" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <span class="text-green-600 text-sm">Plantas de Interior</span>
                             <h3 class="font-bold mt-2">Guía de Cuidados para Plantas de Interior</h3>
@@ -170,23 +170,16 @@
                         <a href="#" class="px-4 py-2 border rounded hover:bg-green-600 hover:text-white">10</a>
                     </nav>
                 </div>
+
+                <!-- Invitación a consulta -->
+                <div class="mt-12 bg-green-50 rounded-lg p-8 text-center">
+                    <h3 class="text-xl font-bold text-green-800 mb-2">¿No encontraste lo que buscabas?</h3>
+                    <p class="text-gray-600 mb-4">Escríbenos y te ayudamos con el cuidado de tus plantas.</p>
+                    <a href="/pages/contacto.html" class="inline-block px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700">Hacer una consulta</a>
+                </div>
             </div>
         </div>
     </main>
-
-    <!-- Newsletter -->
-    <section class="bg-green-600 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-bold mb-4">¿Quieres recibir consejos de jardinería?</h2>
-            <p class="mb-6">Suscríbete a nuestro newsletter y recibe consejos semanales para cuidar tu jardín</p>
-            <div class="max-w-md mx-auto flex">
-                <input type="email" placeholder="Tu email" class="flex-1 px-4 py-2 rounded-l text-gray-900">
-                <button class="px-6 py-2 bg-gray-800 text-white rounded-r hover:bg-gray-700">
-                    Suscribirse
-                </button>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <div id="footer-container"></div>
