@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Jardines Urbanos</title>
+    <title>Login - Verde Vida</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="layout.js"></script>
+    <script src="/js/layout.js"></script>
 </head>
 <body class="bg-gray-50">
     <div id="header-container"></div>
 
 
     <!-- Contenido principal -->
-    <main class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <main class="min-h-screen flex justify-center pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">
             <!-- Tabs de Login/Registro -->
             <div class="bg-white rounded-t-lg border-b">
@@ -28,8 +28,10 @@
                 </div>
             </div>
 
-            <!-- Formulario de Login -->
-            <div id="loginForm" class="bg-white shadow rounded-b-lg px-8 py-10">
+            <!-- Contenedor de formularios con altura fija para evitar saltos -->
+            <div class="relative min-h-[580px]">
+                <!-- Formulario de Login -->
+                <div id="loginForm" class="absolute inset-x-0 top-0 bg-white shadow rounded-b-lg px-8 py-10">
                 <div class="mb-8 text-center">
                     <h2 class="text-3xl font-bold text-gray-900">
                         Bienvenido de nuevo
@@ -111,8 +113,8 @@
                 </div> -->
             </div>
 
-            <!-- Formulario de Registro (inicialmente oculto) -->
-            <div id="registerForm" class=" bg-white shadow rounded-b-lg px-8 py-10 hidden">
+                <!-- Formulario de Registro (inicialmente oculto) -->
+                <div id="registerForm" class="absolute inset-x-0 top-0 bg-white shadow rounded-b-lg px-8 py-10 hidden">
                 <div class="mb-8 text-center">
                     <h2 class="text-3xl font-bold text-gray-900">
                         Crea tu cuenta
@@ -181,7 +183,7 @@
                 </form>
             </div>
         </div>
-        
+    </div>
     </main>
     <script>
         function toggleView(view) {
