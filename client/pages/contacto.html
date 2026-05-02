@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Jardines Urbanos</title>
+    <title>Contacto - Verde Vida</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="layout.js"></script>
+    <script src="/js/layout.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
@@ -15,251 +15,107 @@
     <div class="bg-green-600 text-white py-12">
         <div class="max-w-6xl mx-auto px-4">
             <h1 class="text-4xl font-bold mb-4">¿Necesitas ayuda con tus plantas?</h1>
-            <p class="text-xl">Nuestro equipo de expertos está aquí para ayudarte con cualquier consulta sobre el cuidado de tus plantas.</p>
+            <p class="text-xl">Escribenos y con gusto te ayudamos con cualquier consulta sobre el cuidado de tus plantas.</p>
         </div>
     </div>
 
     <!-- Contenido principal -->
     <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Sección de tipos de consulta -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-6">Selecciona el tipo de consulta</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Diagnóstico de Problemas -->
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-red-500">
-                    <h3 class="text-xl font-bold mb-2">Diagnóstico de Problemas</h3>
-                    <p class="text-gray-600 mb-4">¿Tu planta tiene síntomas preocupantes? Obtén ayuda para identificar y solucionar problemas.</p>
-                    <button onclick="mostrarFormulario('diagnostico')" class="w-full py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600">
-                        Iniciar consulta
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Formulario de consulta -->
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <h2 class="text-2xl font-bold mb-6">Envianos tu consulta</h2>
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Nombre completo</label>
+                        <input type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500" placeholder="Tu nombre">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Correo electronico</label>
+                        <input type="email" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500" placeholder="tu@email.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Telefono (opcional)</label>
+                        <input type="tel" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500" placeholder="+57 300 000 0000">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Tipo de consulta</label>
+                        <select class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500">
+                            <option>Selecciona una opcion</option>
+                            <option>Diagnostico de problemas</option>
+                            <option>Asesoria de cuidados</option>
+                            <option>Diseño de espacios</option>
+                            <option>Otra inquietud</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Describe tu inquietud</label>
+                        <textarea class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500" rows="5" placeholder="Cuentanos que necesitas..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Adjuntar imagenes (opcional)</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                            <input type="file" multiple accept="image/*" class="hidden" id="imagenes-consulta">
+                            <label for="imagenes-consulta" class="cursor-pointer text-gray-600">
+                                <span class="block mb-2">Arrastra las imagenes aqui o haz clic para seleccionar</span>
+                                <span class="text-sm text-gray-500">Hasta 3 imagenes (max. 5MB cada una)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 px-4 bg-green-600 text-white rounded hover:bg-green-700 font-medium">
+                        Enviar consulta
                     </button>
+                </form>
+            </div>
+
+            <!-- Info de contacto -->
+            <div class="space-y-8">
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <h3 class="text-xl font-bold mb-4">Informacion de contacto</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <div>
+                                <p class="font-medium">Direccion</p>
+                                <p class="text-gray-600 text-sm">Medellin, Antioquia, Colombia</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <p class="text-gray-600 text-sm">info@verdevida.com</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <div>
+                                <p class="font-medium">Telefono</p>
+                                <p class="text-gray-600 text-sm">+57 312 345 6789</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
-                <!-- Asesoría de Cuidados -->
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
-                    <h3 class="text-xl font-bold mb-2">Asesoría de Cuidados</h3>
-                    <p class="text-gray-600 mb-4">Recibe consejos personalizados para el cuidado óptimo de tus plantas según tu espacio.</p>
-                    <button onclick="mostrarFormulario('asesoria')" class="w-full py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600">
-                        Iniciar consulta
-                    </button>
-                </div>
-
-                <!-- Diseño de Espacios -->
-                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-500">
-                    <h3 class="text-xl font-bold mb-2">Diseño de Espacios</h3>
-                    <p class="text-gray-600 mb-4">Planifica tu jardín ideal con ayuda de nuestros expertos en diseño de espacios verdes.</p>
-                    <button onclick="mostrarFormulario('diseno')" class="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600">
-                        Iniciar consulta
-                    </button>
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <h3 class="text-xl font-bold mb-4">Horario de atencion</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between"><span class="text-gray-600">Lunes - Viernes</span><span class="font-medium">9:00 - 18:00</span></li>
+                        <li class="flex justify-between"><span class="text-gray-600">Sabado</span><span class="font-medium">10:00 - 14:00</span></li>
+                        <li class="flex justify-between"><span class="text-gray-600">Domingo</span><span class="text-gray-400">Cerrado</span></li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </main>
 
-        <!-- Formularios -->
-        <section class="bg-white rounded-lg shadow-md p-8">
-            <!-- Formulario de Diagnóstico -->
-            <form id="form-diagnostico" class="hidden space-y-6">
-                <h3 class="text-2xl font-bold mb-6 text-red-500">Diagnóstico de Problemas</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Nombre de la planta</label>
-                        <input type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-red-500" placeholder="Si lo conoces">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Tiempo con los síntomas</label>
-                        <select class="w-full px-4 py-2 border rounded focus:outline-none focus:border-red-500">
-                            <option>Menos de una semana</option>
-                            <option>1-2 semanas</option>
-                            <option>Más de un mes</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Síntomas observados</label>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Hojas amarillas
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Hojas secas
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Manchas
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Plagas visibles
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Describe el problema</label>
-                    <textarea class="w-full px-4 py-2 border rounded focus:outline-none focus:border-red-500" rows="4" placeholder="Proporciona todos los detalles que puedas sobre el problema..."></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Adjuntar imágenes</label>
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <input type="file" multiple accept="image/*" class="hidden" id="imagenes-diagnostico">
-                        <label for="imagenes-diagnostico" class="cursor-pointer text-gray-600">
-                            <span class="block mb-2">Arrastra las imágenes aquí o haz clic para seleccionar</span>
-                            <span class="text-sm text-gray-500">Puedes subir hasta 3 imágenes (máx. 5MB cada una)</span>
-                        </label>
-                    </div>
-                </div>
-            </form>
-
-            <!-- Formulario de Asesoría -->
-            <form id="form-asesoria" class="hidden space-y-6">
-                <h3 class="text-2xl font-bold mb-6 text-green-500">Asesoría de Cuidados</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Tipo de espacio</label>
-                        <select class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500">
-                            <option>Interior</option>
-                            <option>Balcón</option>
-                            <option>Terraza</option>
-                            <option>Jardín</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Exposición a la luz</label>
-                        <select class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500">
-                            <option>Sol directo</option>
-                            <option>Luz indirecta brillante</option>
-                            <option>Luz indirecta media</option>
-                            <option>Sombra</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Experiencia en jardinería</label>
-                    <div class="flex space-x-4">
-                        <label class="flex items-center">
-                            <input type="radio" name="experiencia" class="mr-2">
-                            Principiante
-                        </label>
-                        <label class="flex items-center">
-                            <input type="radio" name="experiencia" class="mr-2">
-                            Intermedio
-                        </label>
-                        <label class="flex items-center">
-                            <input type="radio" name="experiencia" class="mr-2">
-                            Avanzado
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">¿Qué tipo de plantas te interesan?</label>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Plantas de interior
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Suculentas
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Plantas con flor
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Plantas comestibles
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Plantas grandes
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Comentarios adicionales</label>
-                    <textarea class="w-full px-4 py-2 border rounded focus:outline-none focus:border-green-500" rows="4" placeholder="¿Hay algo más que deberíamos saber?"></textarea>
-                </div>
-            </form>
-
-            <!-- Formulario de Diseño -->
-            <form id="form-diseno" class="hidden space-y-6">
-                <h3 class="text-2xl font-bold mb-6 text-blue-500">Diseño de Espacios</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Tipo de proyecto</label>
-                        <select class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500">
-                            <option>Jardín residencial</option>
-                            <option>Balcón</option>
-                            <option>Terraza</option>
-                            <option>Jardín vertical</option>
-                            <option>Espacio comercial</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-gray-700 font-medium mb-2">Dimensiones aproximadas</label>
-                        <input type="text" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500" placeholder="Ej: 3x4 metros">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Estilo preferido</label>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Moderno
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Tropical
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Mediterráneo
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Zen
-                        </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2">
-                            Huerto urbano
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Presupuesto estimado</label>
-                    <select class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500">
-                        <option>Menos de 500€</option>
-                        <option>500€ - 1000€</option>
-                        <option>1000€ - 2000€</option>
-                        <option>Más de 2000€</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 font-medium mb-2">Adjuntar imágenes del espacio</label>
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <input type="file" multiple accept="image/*" class="hidden" id="imagenes-diseno">
-                        <label for="imagenes-diseno" class="cursor-pointer
-
-
-
-
-
-
-
-
-                        <div id="footer-container"></div>
+    <!-- Footer -->
+    <div id="footer-container"></div>
+</body>
+</html>
