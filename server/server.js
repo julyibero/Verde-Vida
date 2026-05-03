@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -26,7 +27,10 @@ app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Rutas
+// Archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, '../client')));
+
+// Rutas API
 app.use('/api/auth', authRoutes);
 
 // Health check
