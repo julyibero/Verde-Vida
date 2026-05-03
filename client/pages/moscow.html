@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz MoSCoW — Plano Cartesiano | Verde Vida</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --must: #22c55e;
+            --should: #eab308;
+            --could: #3b82f6;
+            --wont: #64748b;
+            --bg: #0b1120;
+            --panel: #151e32;
+            --grid: #1e293b;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--panel);
+            border-radius: 20px;
+            border: 1px solid var(--grid);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            padding: 32px 40px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        header { text-align: center; }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--must), var(--could));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: rgba(11, 17, 32, 0.6);
+            border-radius: 16px;
+            border: 1px solid var(--grid);
+            overflow: hidden;
+        }
+
+        .chart-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .grid-line { stroke: var(--grid); stroke-width: 1; stroke-dasharray: 5 5; opacity: 0.6; }
+        .axis-main { stroke: var(--muted); stroke-width: 2; }
+        .axis-arrow { fill: var(--muted); }
+        .axis-label { fill: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+        .axis-end { fill: var(--muted); font-size: 10px; font-weight: 500; }
+
+        .quadrant-bg { opacity: 0.06; pointer-events: none; }
+
+        .quadrant-text {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.18;
+            pointer-events: none;
+        }
+
+        .points-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+        }
+
+        .point {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2.5px solid;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .point:hover, .point.active {
+            transform: translate(-50%, -50%) scale(1.4);
+            z-index: 100;
+            font-size: 0.9rem;
+        }
+
+        .point.must-have  { border-color: var(--must);  color: var(--must);  box-shadow: 0 0 16px rgba(34, 197, 94, 0.25); }
+        .point.should-have{ border-color: var(--should); color: var(--should); box-shadow: 0 0 16px rgba(234, 179, 8, 0.25); }
+        .point.could-have { border-color: var(--could);  color: var(--could);  box-shadow: 0 0 16px rgba(59, 130, 246, 0.25); }
+        .point.wont-have  { border-color: var(--wont);   color: var(--wont);   box-shadow: 0 0 16px rgba(100, 116, 139, 0.25); }
+
+        .point.must-have:hover,  .point.must-have.active  { background: var(--must);  color: #052e16; box-shadow: 0 0 28px rgba(34, 197, 94, 0.5); }
+        .point.should-have:hover,.point.should-have.active{ background: var(--should); color: #422006; box-shadow: 0 0 28px rgba(234, 179, 8, 0.5); }
+        .point.could-have:hover, .point.could-have.active { background: var(--could);  color: #fff;    box-shadow: 0 0 28px rgba(59, 130, 246, 0.5); }
+        .point.wont-have:hover,  .point.wont-have.active  { background: var(--wont);   color: #fff;    box-shadow: 0 0 28px rgba(100, 116, 139, 0.5); }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.96);
+            border: 1px solid var(--grid);
+            border-radius: 12px;
+            padding: 14px 16px;
+            width: 260px;
+            z-index: 200;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .tooltip.visible { opacity: 1; }
+
+        .tt-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .tt-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .tt-id { font-size: 0.75rem; font-weight: 700; opacity: 0.6; }
+        .tt-title { font-weight: 700; font-size: 0.9rem; line-height: 1.3; }
+        .tt-meta { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; }
+        .tt-just { font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; border-top: 1px solid var(--grid); padding-top: 8px; margin-top: 6px; }
+
+        .legend-bar { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        .legend-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--grid);
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+
+        .legend-label {
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+        .legend-nums { display: flex; gap: 4px; flex-wrap: wrap; }
+
+        .num-pill {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s;
+            border: 1px solid transparent;
+        }
+
+        .num-pill:hover { transform: translateY(-2px); }
+
+        .num-pill.must-have  { background: rgba(34, 197, 94, 0.15);  color: var(--must);  border-color: rgba(34, 197, 94, 0.3); }
+        .num-pill.should-have{ background: rgba(234, 179, 8, 0.15);   color: var(--should); border-color: rgba(234, 179, 8, 0.3); }
+        .num-pill.could-have { background: rgba(59, 130, 246, 0.15);  color: var(--could);  border-color: rgba(59, 130, 246, 0.3); }
+        .num-pill.wont-have  { background: rgba(100, 116, 139, 0.15); color: var(--wont);   border-color: rgba(100, 116, 139, 0.3); }
+
+        .num-pill.must-have:hover  { background: var(--must);  color: #052e16; }
+        .num-pill.should-have:hover{ background: var(--should); color: #422006; }
+        .num-pill.could-have:hover { background: var(--could);  color: #fff; }
+        .num-pill.wont-have:hover  { background: var(--wont);   color: #fff; }
+
+        /* Siguientes pasos panel */
+        .next-steps {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--grid);
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+
+        .next-steps h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .next-steps h3 .badge {
+            background: var(--must);
+            color: #052e16;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-weight: 800;
+        }
+
+        .step-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .step-item:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: var(--grid);
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .step-item.must-next  .step-num { background: rgba(34, 197, 94, 0.2); color: var(--must); }
+        .step-item.should-next .step-num { background: rgba(234, 179, 8, 0.2); color: var(--should); }
+        .step-item.could-next  .step-num { background: rgba(59, 130, 246, 0.2); color: var(--could); }
+
+        .step-title { font-weight: 600; font-size: 0.9rem; flex: 1; }
+        .step-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+
+        .step-status.pending { background: rgba(234, 179, 8, 0.15); color: var(--should); }
+        .step-status.done    { background: rgba(34, 197, 94, 0.15); color: var(--must); }
+
+        @media (max-width: 768px) {
+            .slide { padding: 20px; }
+            header h1 { font-size: 1.5rem; }
+            .chart-wrap { aspect-ratio: 4 / 3; }
+            .point { width: 30px; height: 30px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide">
+    <header>
+        <h1>Matriz de Priorización MoSCoW</h1>
+        <p>Plano cartesiano: Valor Estratégico × Facilidad de Implementación — Verde Vida</p>
+    </header>
+
+    <div class="chart-wrap" id="chartWrap">
+        <svg class="chart-svg" viewBox="0 0 1000 620" preserveAspectRatio="none">
+            <rect x="500" y="50" width="450" height="260" class="quadrant-bg" fill="#22c55e"/>
+            <rect x="50"  y="50" width="450" height="260" class="quadrant-bg" fill="#eab308"/>
+            <rect x="500" y="310" width="450" height="260" class="quadrant-bg" fill="#3b82f6"/>
+            <rect x="50"  y="310" width="450" height="260" class="quadrant-bg" fill="#64748b"/>
+
+            <line x1="50" y1="310" x2="950" y2="310" class="axis-main"/>
+            <line x1="500" y1="50" x2="500" y2="570" class="axis-main"/>
+
+            <line x1="50" y1="120" x2="950" y2="120" class="grid-line"/>
+            <line x1="50" y1="190" x2="950" y2="190" class="grid-line"/>
+            <line x1="50" y1="430" x2="950" y2="430" class="grid-line"/>
+            <line x1="50" y1="500" x2="950" y2="500" class="grid-line"/>
+            <line x1="170" y1="50" x2="170" y2="570" class="grid-line"/>
+            <line x1="290" y1="50" x2="290" y2="570" class="grid-line"/>
+            <line x1="710" y1="50" x2="710" y2="570" class="grid-line"/>
+            <line x1="830" y1="50" x2="830" y2="570" class="grid-line"/>
+
+            <polygon points="950,310 940,305 940,315" class="axis-arrow"/>
+            <polygon points="500,50 495,60 505,60" class="axis-arrow"/>
+
+            <text x="500" y="595" text-anchor="middle" class="axis-label">Valor Estratégico para el Negocio →</text>
+            <text x="25" y="315" text-anchor="middle" transform="rotate(-90 25 315)" class="axis-label">← Facilidad de Implementación</text>
+
+            <text x="80" y="560" class="axis-end">Bajo</text>
+            <text x="920" y="560" class="axis-end">Alto</text>
+            <text x="65" y="545" class="axis-end">Difícil</text>
+            <text x="65" y="75" class="axis-end">Fácil</text>
+
+            <text x="725" y="90" text-anchor="middle" class="quadrant-text" fill="#22c55e">Must Have</text>
+            <text x="275" y="90" text-anchor="middle" class="quadrant-text" fill="#eab308">Should Have</text>
+            <text x="725" y="540" text-anchor="middle" class="quadrant-text" fill="#3b82f6">Could Have</text>
+            <text x="275" y="540" text-anchor="middle" class="quadrant-text" fill="#64748b">Won't Have</text>
+        </svg>
+
+        <div class="points-layer" id="pointsLayer">
+            <!-- MUST HAVE -->
+            <div class="point must-have"  style="left:82%;  top:14%;" data-id="10">10</div>
+            <div class="point must-have"  style="left:70%;  top:18%;" data-id="1">1</div>
+            <div class="point must-have"  style="left:88%;  top:22%;" data-id="2">2</div>
+            <div class="point must-have"  style="left:62%;  top:26%;" data-id="3">3</div>
+            <div class="point must-have"  style="left:76%;  top:30%;" data-id="4">4</div>
+            <div class="point must-have"  style="left:68%;  top:34%;" data-id="5">5</div>
+            <div class="point must-have"  style="left:58%;  top:38%;" data-id="9">9</div>
+            <div class="point must-have"  style="left:84%;  top:36%;" data-id="6">6</div>
+            <div class="point must-have"  style="left:90%;  top:42%;" data-id="7">7</div>
+            <div class="point must-have"  style="left:78%;  top:44%;" data-id="8">8</div>
+
+            <!-- SHOULD HAVE -->
+            <div class="point should-have" style="left:42%;  top:16%;" data-id="16">16</div>
+            <div class="point should-have" style="left:30%;  top:20%;" data-id="11">11</div>
+            <div class="point should-have" style="left:18%;  top:24%;" data-id="12">12</div>
+            <div class="point should-have" style="left:38%;  top:32%;" data-id="13">13</div>
+            <div class="point should-have" style="left:22%;  top:36%;" data-id="14">14</div>
+            <div class="point should-have" style="left:34%;  top:40%;" data-id="15">15</div>
+
+            <!-- COULD HAVE -->
+            <div class="point could-have"  style="left:76%;  top:58%;" data-id="20">20</div>
+            <div class="point could-have"  style="left:64%;  top:64%;" data-id="17">17</div>
+            <div class="point could-have"  style="left:86%;  top:68%;" data-id="19">19</div>
+            <div class="point could-have"  style="left:70%;  top:78%;" data-id="18">18</div>
+
+            <!-- WON'T HAVE -->
+            <div class="point wont-have"   style="left:42%;  top:58%;" data-id="26">26</div>
+            <div class="point wont-have"   style="left:28%;  top:62%;" data-id="25">25</div>
+            <div class="point wont-have"   style="left:16%;  top:68%;" data-id="21">21</div>
+            <div class="point wont-have"   style="left:36%;  top:74%;" data-id="22">22</div>
+            <div class="point wont-have"   style="left:24%;  top:80%;" data-id="24">24</div>
+            <div class="point wont-have"   style="left:12%;  top:86%;" data-id="23">23</div>
+        </div>
+
+        <div class="tooltip" id="tooltip">
+            <div class="tt-header">
+                <div class="tt-dot" id="ttDot"></div>
+                <span class="tt-id" id="ttId">#1</span>
+                <span class="tt-title" id="ttTitle">Título</span>
+            </div>
+            <div class="tt-meta" id="ttMeta">Must Have • Implementado</div>
+            <div class="tt-just" id="ttJust">Justificación...</div>
+        </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend-bar">
+        <div class="legend-group">
+            <span class="legend-label" style="color:var(--must)"><span class="legend-dot" style="background:var(--must)"></span>Must</span>
+            <div class="legend-nums">
+                <span class="num-pill must-have" data-id="1">1</span>
+                <span class="num-pill must-have" data-id="2">2</span>
+                <span class="num-pill must-have" data-id="3">3</span>
+                <span class="num-pill must-have" data-id="4">4</span>
+                <span class="num-pill must-have" data-id="5">5</span>
+                <span class="num-pill must-have" data-id="6">6</span>
+                <span class="num-pill must-have" data-id="7">7</span>
+                <span class="num-pill must-have" data-id="8">8</span>
+                <span class="num-pill must-have" data-id="9">9</span>
+                <span class="num-pill must-have" data-id="10">10</span>
+            </div>
+        </div>
+        <div class="legend-group">
+            <span class="legend-label" style="color:var(--should)"><span class="legend-dot" style="background:var(--should)"></span>Should</span>
+            <div class="legend-nums">
+                <span class="num-pill should-have" data-id="11">11</span>
+                <span class="num-pill should-have" data-id="12">12</span>
+                <span class="num-pill should-have" data-id="13">13</span>
+                <span class="num-pill should-have" data-id="14">14</span>
+                <span class="num-pill should-have" data-id="15">15</span>
+                <span class="num-pill should-have" data-id="16">16</span>
+            </div>
+        </div>
+        <div class="legend-group">
+            <span class="legend-label" style="color:var(--could)"><span class="legend-dot" style="background:var(--could)"></span>Could</span>
+            <div class="legend-nums">
+                <span class="num-pill could-have" data-id="17">17</span>
+                <span class="num-pill could-have" data-id="18">18</span>
+                <span class="num-pill could-have" data-id="19">19</span>
+                <span class="num-pill could-have" data-id="20">20</span>
+            </div>
+        </div>
+        <div class="legend-group">
+            <span class="legend-label" style="color:var(--wont)"><span class="legend-dot" style="background:var(--wont)"></span>Won't</span>
+            <div class="legend-nums">
+                <span class="num-pill wont-have" data-id="21">21</span>
+                <span class="num-pill wont-have" data-id="22">22</span>
+                <span class="num-pill wont-have" data-id="23">23</span>
+                <span class="num-pill wont-have" data-id="24">24</span>
+                <span class="num-pill wont-have" data-id="25">25</span>
+                <span class="num-pill wont-have" data-id="26">26</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Siguientes pasos -->
+    <div class="next-steps">
+        <h3>Siguientes pasos <span class="badge">PENDIENTES</span></h3>
+        <div class="step-list" id="stepList">
+            <!-- Se genera dinámicamente -->
+        </div>
+    </div>
+</div>
+
+<script>
+    const db = {
+        1:  {t:"Landing page con branding Verde Vida", c:"Must Have", s:"Implementado", j:"Primera impresión del negocio, validada con la propietaria.", col:"#22c55e"},
+        2:  {t:"Catálogo de productos visual (estático)", c:"Must Have", s:"Implementado", j:"Core del negocio: mostrar qué se vende.", col:"#22c55e"},
+        3:  {t:"Blog educativo con artículos", c:"Must Have", s:"Implementado", j:"Diferenciador clave: educación antes que venta.", col:"#22c55e"},
+        4:  {t:"Registro e inicio de sesión de usuarios", c:"Must Have", s:"Implementado", j:"Base para todas las funcionalidades personalizadas.", col:"#22c55e"},
+        5:  {t:"Autenticación JWT segura", c:"Must Have", s:"Implementado", j:"Requisito no funcional crítico de seguridad.", col:"#22c55e"},
+        6:  {t:"Dashboard de usuario", c:"Must Have", s:"Implementado", j:"Punto de entrada al ecosistema autenticado.", col:"#22c55e"},
+        7:  {t:"Creación de jardines virtuales", c:"Must Have", s:"Implementado (UI)", j:"Funcionalidad diferenciadora principal.", col:"#22c55e"},
+        8:  {t:"Gestión de plantas por jardín", c:"Must Have", s:"Implementado (UI)", j:"Complementa la funcionalidad de jardines.", col:"#22c55e"},
+        9:  {t:"Formulario de consultas especializadas", c:"Must Have", s:"Implementado (UI)", j:"Replica la asesoría presencial de María.", col:"#22c55e"},
+        10: {t:"API REST base (auth, health check)", c:"Must Have", s:"Implementado", j:"Infraestructura para todas las conexiones.", col:"#22c55e"},
+        11: {t:"Catálogo conectado al API (dinámico)", c:"Should Have", s:"Pendiente", j:"Mejora mantenibilidad; catálogo estático funciona para MVP.", col:"#eab308"},
+        12: {t:"Blog conectado al API", c:"Should Have", s:"Pendiente", j:"Permite gestión de contenido sin tocar código.", col:"#eab308"},
+        13: {t:"Jardines conectados al API (CRUD)", c:"Should Have", s:"Pendiente", j:"Esencial para persistencia real de datos de usuario.", col:"#eab308"},
+        14: {t:"Consultas con upload de imágenes", c:"Should Have", s:"Pendiente", j:"Valor agregado significativo para diagnóstico.", col:"#eab308"},
+        15: {t:"Panel administrativo básico", c:"Should Have", s:"Pendiente", j:"Necesario para operación, pero puede gestionarse vía DB.", col:"#eab308"},
+        16: {t:"Seeders de datos de prueba", c:"Should Have", s:"Pendiente", j:"Facilita demos y pruebas de aceptación.", col:"#eab308"},
+        17: {t:"Recordatorios con notificaciones email", c:"Could Have", s:"Pendiente", j:"Mejora retención, pero requiere servicio SMTP.", col:"#3b82f6"},
+        18: {t:"Formulario 'Describe tu Espacio'", c:"Could Have", s:"Pendiente", j:"Diferenciador avanzado, algoritmo de matching.", col:"#3b82f6"},
+        19: {t:"Carrito de compras (sin pasarela)", c:"Could Have", s:"Pendiente", j:"Preparación para fase comercial.", col:"#3b82f6"},
+        20: {t:"Estadísticas de uso en dashboard admin", c:"Could Have", s:"Pendiente", j:"Valor para toma de decisiones de negocio.", col:"#3b82f6"},
+        21: {t:"Pasarela de pagos (MercadoPago, PayU)", c:"Won't Have", s:"Fase 2", j:"Comercialización nacional post-MVP.", col:"#64748b"},
+        22: {t:"Chat en tiempo real (Socket.io)", c:"Won't Have", s:"Fase 2", j:"Mejora de consultas post-MVP.", col:"#64748b"},
+        23: {t:"App móvil nativa (React Native / Flutter)", c:"Won't Have", s:"Fase 3", j:"Expansión de canales post-MVP.", col:"#64748b"},
+        24: {t:"Sistema de inventario automático / ERP", c:"Won't Have", s:"Fase 2", j:"Integración con operaciones físicas post-MVP.", col:"#64748b"},
+        25: {t:"Notificaciones push y SMS", c:"Won't Have", s:"Fase 2", j:"Canales adicionales de comunicación post-MVP.", col:"#64748b"},
+        26: {t:"Tests automatizados (Jest, Cypress)", c:"Won't Have", s:"Fase 2", j:"Madurez de código post-MVP.", col:"#64748b"}
+    };
+
+    const tooltip = document.getElementById('tooltip');
+    const ttDot = document.getElementById('ttDot');
+    const ttId = document.getElementById('ttId');
+    const ttTitle = document.getElementById('ttTitle');
+    const ttMeta = document.getElementById('ttMeta');
+    const ttJust = document.getElementById('ttJust');
+    const chartWrap = document.getElementById('chartWrap');
+
+    function showTip(e, id) {
+        const d = db[id]; if(!d) return;
+        ttDot.style.background = d.col;
+        ttId.textContent = `#${id}`;
+        ttId.style.color = d.col;
+        ttTitle.textContent = d.t;
+        ttTitle.style.color = d.col;
+        ttMeta.textContent = `${d.c} • ${d.s}`;
+        ttJust.textContent = d.j;
+
+        const r = chartWrap.getBoundingClientRect();
+        let x = e.clientX - r.left + 18;
+        let y = e.clientY - r.top - 20;
+        if (x + 270 > r.width) x = e.clientX - r.left - 278;
+        if (y + 140 > r.height) y = e.clientY - r.top - 140;
+        if (y < 10) y = 10;
+
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+        tooltip.classList.add('visible');
+    }
+
+    function hideTip() { tooltip.classList.remove('visible'); }
+
+    function setActive(id) {
+        document.querySelectorAll('.point').forEach(p => p.classList.toggle('active', p.dataset.id === id));
+        document.querySelectorAll('.num-pill').forEach(p => p.classList.toggle('active', p.dataset.id === id));
+    }
+
+    document.querySelectorAll('.point').forEach(p => {
+        p.addEventListener('mouseenter', (e) => { showTip(e, p.dataset.id); setActive(p.dataset.id); });
+        p.addEventListener('mouseleave', () => { hideTip(); setActive(null); });
+    });
+
+    document.querySelectorAll('.num-pill').forEach(p => {
+        p.addEventListener('mouseenter', () => {
+            const id = p.dataset.id;
+            setActive(id);
+            const point = document.querySelector(`.point[data-id="${id}"]`);
+            if (point) {
+                const r = point.getBoundingClientRect();
+                showTip({clientX: r.left + r.width/2, clientY: r.top + r.height/2}, id);
+            }
+        });
+        p.addEventListener('mouseleave', () => { hideTip(); setActive(null); });
+    });
+
+    // Generar lista de siguientes pasos dinámicamente
+    function renderNextSteps() {
+        const list = document.getElementById('stepList');
+        const pending = Object.entries(db)
+            .filter(([_, d]) => d.s === 'Pendiente')
+            .sort((a, b) => {
+                const priority = { 'Must Have': 1, 'Should Have': 2, 'Could Have': 3, 'Won\'t Have': 4 };
+                return priority[a[1].c] - priority[b[1].c];
+            });
+
+        if (pending.length === 0) {
+            list.innerHTML = '<div class="step-item"><span class="step-title">🎉 Todas las funcionalidades están implementadas</span></div>';
+            return;
+        }
+
+        list.innerHTML = pending.map(([id, d]) => {
+            const cls = d.c === 'Must Have' ? 'must-next' : d.c === 'Should Have' ? 'should-next' : 'could-next';
+            return `
+                <div class="step-item ${cls}">
+                    <span class="step-num">${id}</span>
+                    <span class="step-title">${d.t}</span>
+                    <span class="step-status pending">Pendiente</span>
+                </div>
+            `;
+        }).join('');
+    }
+
+    renderNextSteps();
+</script>
+
+</body>
+</html>
