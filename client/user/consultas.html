@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas - Verde Vida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/auth.js"></script>
+</head>
+<body class="bg-gray-50">
+    <script>auth.redirectIfNotLoggedIn();</script>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main content -->
+        <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold text-gray-900">Centro de Ayuda</h1>
+                <p class="text-gray-600 mt-1">Encuentra respuestas o crea una consulta personalizada</p>
+            </div>
+
+            <!-- Buscador Principal -->
+            <div class="bg-white rounded-lg shadow p-6 lg:p-8 mb-8">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">¿Qué problema tienes con tu planta?</h2>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="flex-1">
+                        <input type="text" placeholder="Ej: hojas amarillas, plagas, riego..."
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                    </div>
+                    <button class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium transition-colors">
+                        Buscar solución
+                    </button>
+                </div>
+                <!-- Tags populares -->
+                <div class="mt-4">
+                    <p class="text-sm text-gray-600 mb-2">Búsquedas populares:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors">Hojas amarillas</button>
+                        <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors">Riego excesivo</button>
+                        <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors">Plagas comunes</button>
+                        <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors">Trasplante</button>
+                        <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors">Orquídea seca</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultados de búsqueda y recursos -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Columna izquierda: Artículos y FAQ -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Artículos relacionados -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">Artículos relacionados del blog</h3>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-start border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                                <div class="flex-shrink-0">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
+                                        <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-base font-medium text-gray-900">
+                                        <a href="/pages/blog.html" class="hover:text-green-600 transition-colors">Guía completa: ¿Por qué se ponen amarillas las hojas?</a>
+                                    </h4>
+                                    <p class="mt-1 text-sm text-gray-500">Diagnóstico y soluciones para el amarillamiento de hojas en plantas de interior.</p>
+                                    <div class="mt-2 flex items-center text-xs text-gray-400">
+                                        <span>Dificultad: Intermedio</span>
+                                        <span class="mx-2">•</span>
+                                        <span>Leído por 234 usuarios</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                                <div class="flex-shrink-0">
+                                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
+                                        <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-base font-medium text-gray-900">
+                                        <a href="/pages/blog.html" class="hover:text-green-600 transition-colors">Calendario de riego para plantas de interior</a>
+                                    </h4>
+                                    <p class="mt-1 text-sm text-gray-500">Cuánto y cada cuándo regar las plantas más comunes en apartamentos.</p>
+                                    <div class="mt-2 flex items-center text-xs text-gray-400">
+                                        <span>Dificultad: Fácil</span>
+                                        <span class="mx-2">•</span>
+                                        <span>Leído por 512 usuarios</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg">
+                            <a href="/pages/blog.html" class="text-green-600 hover:text-green-700 text-sm font-medium">Ver todos los artículos →</a>
+                        </div>
+                    </div>
+
+                    <!-- Preguntas frecuentes -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">Preguntas frecuentes</h3>
+                        </div>
+                        <div class="divide-y divide-gray-100" id="faqContainer">
+                            <div class="faq-item">
+                                <button class="faq-trigger flex w-full items-center justify-between text-left px-6 py-4 hover:bg-gray-50 transition-colors">
+                                    <span class="text-base font-medium text-gray-900">¿Cada cuánto debo regar mi planta?</span>
+                                    <svg class="faq-icon h-5 w-5 text-gray-500 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-4">
+                                    <p class="text-sm text-gray-600">Depende de la especie, el clima y la temporada. La regla general es: mete un dedo en la tierra hasta el segundo nudillo. Si está seco, riega. Si está húmedo, espera. Las orquídeas, por ejemplo, prefieren riego cada 7-10 días.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-trigger flex w-full items-center justify-between text-left px-6 py-4 hover:bg-gray-50 transition-colors">
+                                    <span class="text-base font-medium text-gray-900">¿Por qué se caen las hojas de mi planta?</span>
+                                    <svg class="faq-icon h-5 w-5 text-gray-500 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-4">
+                                    <p class="text-sm text-gray-600">Puede ser por cambio de estación, estrés por traslado, riego excesivo o falta de luz. Revisa que la maceta tenga buen drenaje y que la planta reciba la luz adecuada para su especie.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-trigger flex w-full items-center justify-between text-left px-6 py-4 hover:bg-gray-50 transition-colors">
+                                    <span class="text-base font-medium text-gray-900">¿Cómo sé si mi planta tiene plagas?</span>
+                                    <svg class="faq-icon h-5 w-5 text-gray-500 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-4">
+                                    <p class="text-sm text-gray-600">Revisa el envés de las hojas. Si ves puntitos negros, telarañas finas, hojas deformes o una sustancia pegajosa, es probable que tenga plagas. Tómale fotos y envíanos una consulta para confirmar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Consulta personalizada y activas -->
+                <div class="space-y-6">
+                    <!-- Crear consulta -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">¿No encontraste la solución?</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-600 mb-4">Crea una consulta personalizada y doña María te ayudará directamente.</p>
+                            <button onclick="openModal('newQueryModal')"
+                                class="w-full py-3 px-4 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium transition-colors">
+                                Crear consulta personalizada
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mis consultas activas -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">Mis consultas activas</h3>
+                        </div>
+                        <div class="divide-y divide-gray-100" id="activeQueries">
+                            <div class="p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-900">Diagnóstico: hojas marrón</h4>
+                                        <p class="text-xs text-gray-500 mt-1">Creada hace 2 días</p>
+                                    </div>
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full font-medium">En proceso</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-900">Asesoría: balcón norte</h4>
+                                        <p class="text-xs text-gray-500 mt-1">Creada hace 5 días</p>
+                                    </div>
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full font-medium">Respondida</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal: Nueva Consulta -->
+    <div id="newQueryModal" class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
+                <h2 class="text-xl font-bold text-gray-900">Nueva Consulta Personalizada</h2>
+                <button onclick="closeModal('newQueryModal')" class="text-gray-400 hover:text-gray-500">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <form class="p-6 space-y-6" onsubmit="event.preventDefault(); closeModal('newQueryModal'); alert('Consulta enviada (mock)');">
+                <!-- Tipo de consulta -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">¿Qué tipo de consulta quieres hacer?</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="tipoConsulta" value="diagnostico" class="peer sr-only" checked>
+                            <div class="rounded-lg border-2 border-gray-200 p-4 text-center hover:border-green-300 peer-checked:border-green-600 peer-checked:bg-green-50 transition-colors">
+                                <div class="text-2xl mb-1">🔍</div>
+                                <div class="text-sm font-medium text-gray-900">Diagnóstico</div>
+                                <div class="text-xs text-gray-500 mt-1">Mi planta tiene un problema</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="tipoConsulta" value="asesoria" class="peer sr-only">
+                            <div class="rounded-lg border-2 border-gray-200 p-4 text-center hover:border-green-300 peer-checked:border-green-600 peer-checked:bg-green-50 transition-colors">
+                                <div class="text-2xl mb-1">💡</div>
+                                <div class="text-sm font-medium text-gray-900">Asesoría</div>
+                                <div class="text-xs text-gray-500 mt-1">¿Cómo cuidar mi planta?</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="tipoConsulta" value="diseno" class="peer sr-only">
+                            <div class="rounded-lg border-2 border-gray-200 p-4 text-center hover:border-green-300 peer-checked:border-green-600 peer-checked:bg-green-50 transition-colors">
+                                <div class="text-2xl mb-1">🌿</div>
+                                <div class="text-sm font-medium text-gray-900">Diseño</div>
+                                <div class="text-xs text-gray-500 mt-1">¿Qué plantas poner en mi espacio?</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Jardín y Planta -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Jardín</label>
+                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 border px-3 py-2">
+                            <option>Casa Principal</option>
+                            <option>Oficina</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Planta (opcional)</label>
+                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 border px-3 py-2">
+                            <option>-- Seleccionar --</option>
+                            <option>Orquídea Blanca</option>
+                            <option>Monstera</option>
+                            <option>Lavanda</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Descripción -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Describe tu consulta</label>
+                    <textarea rows="4" placeholder="Cuéntanos todos los detalles..."
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 border px-3 py-2"></textarea>
+                </div>
+
+                <!-- Fotos -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Adjuntar fotos (máx. 3)</label>
+                    <div class="mt-1 border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-green-400 transition-colors">
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="mt-4 flex justify-center text-sm text-gray-600">
+                                <label class="relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500">
+                                    <span>Sube una foto</span>
+                                    <input type="file" class="sr-only" multiple accept="image/png,image/jpeg">
+                                </label>
+                                <p class="pl-1">o arrastra y suelta</p>
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG hasta 5MB</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="flex justify-end space-x-3 pt-2">
+                    <button type="button" onclick="closeModal('newQueryModal')"
+                        class="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 border rounded-md">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium">
+                        Enviar consulta
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Cargar sidebar
+        fetch('/components/sidebar.html')
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById('sidebar-container').innerHTML = html;
+            });
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Acordeón FAQ
+        document.querySelectorAll('.faq-trigger').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('.faq-icon');
+                const isHidden = answer.classList.contains('hidden');
+                
+                // Cerrar todos
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+                document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
+                
+                if (isHidden) {
+                    answer.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
