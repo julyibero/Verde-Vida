@@ -6,8 +6,10 @@
     <title>Login - Verde Vida</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/js/layout.js"></script>
+    <script src="/js/auth.js"></script>
 </head>
 <body class="bg-gray-50">
+    <script>auth.redirectIfLoggedIn();</script>
     <div id="header-container"></div>
 
 
@@ -41,7 +43,8 @@
                     </p>
                 </div>
 
-                <form class="space-y-6">
+                <form id="loginFormElement" class="space-y-6">
+                    <div id="loginError" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm"></div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">
                             Correo electrónico
@@ -79,7 +82,7 @@
                     </div>
 
                     <div>
-                        <button type="submit"
+                        <button type="submit" id="loginBtn"
                             class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                             Iniciar Sesión
                         </button>
@@ -124,20 +127,21 @@
                     </p>
                 </div>
 
-                <form class="space-y-6">
+                <form id="registerFormElement" class="space-y-6">
+                    <div id="registerError" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm"></div>
                     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">
                                 Nombre
                             </label>
-                            <input type="text" required
+                            <input id="regNombre" type="text" required
                                 class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">
                                 Apellidos
                             </label>
-                            <input type="text" required
+                            <input id="regApellidos" type="text" required
                                 class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                         </div>
                     </div>
@@ -146,7 +150,7 @@
                         <label class="block text-sm font-medium text-gray-700">
                             Correo electrónico
                         </label>
-                        <input type="email" required
+                        <input id="regEmail" type="email" required
                             class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                     </div>
 
@@ -154,7 +158,7 @@
                         <label class="block text-sm font-medium text-gray-700">
                             Contraseña
                         </label>
-                        <input type="password" required
+                        <input id="regPassword" type="password" required minlength="6"
                             class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                     </div>
 
@@ -162,7 +166,7 @@
                         <label class="block text-sm font-medium text-gray-700">
                             Confirmar contraseña
                         </label>
-                        <input type="password" required
+                        <input id="regPasswordConfirm" type="password" required minlength="6"
                             class="mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                     </div>
 
@@ -175,7 +179,7 @@
                     </div>
 
                     <div>
-                        <button type="submit"
+                        <button type="submit" id="registerBtn"
                             class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                             Registrarse
                         </button>
@@ -210,6 +214,64 @@
                 loginTab.classList.add('text-gray-500', 'bg-gray-50');
             }
         }
+        // Login
+        document.getElementById('loginFormElement').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('loginBtn');
+            const errorDiv = document.getElementById('loginError');
+            
+            btn.disabled = true;
+            btn.textContent = 'Iniciando sesión...';
+            errorDiv.classList.add('hidden');
+            
+            try {
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                await auth.login(email, password);
+                window.location.href = '/user/dashboard.html';
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove('hidden');
+                btn.disabled = false;
+                btn.textContent = 'Iniciar Sesión';
+            }
+        });
+
+        // Registro
+        document.getElementById('registerFormElement').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('registerBtn');
+            const errorDiv = document.getElementById('registerError');
+            
+            btn.disabled = true;
+            btn.textContent = 'Creando cuenta...';
+            errorDiv.classList.add('hidden');
+            
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regPasswordConfirm').value;
+            
+            if (password !== confirm) {
+                errorDiv.textContent = 'Las contraseñas no coinciden';
+                errorDiv.classList.remove('hidden');
+                btn.disabled = false;
+                btn.textContent = 'Registrarse';
+                return;
+            }
+            
+            try {
+                const nombre = document.getElementById('regNombre').value.trim();
+                const apellidos = document.getElementById('regApellidos').value.trim();
+                const nombreCompleto = apellidos ? `${nombre} ${apellidos}` : nombre;
+                const email = document.getElementById('regEmail').value.trim();
+                await auth.register(nombreCompleto, email, password);
+                window.location.href = '/user/dashboard.html';
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove('hidden');
+                btn.disabled = false;
+                btn.textContent = 'Registrarse';
+            }
+        });
     </script>
 
     <div id="footer-container"></div>
