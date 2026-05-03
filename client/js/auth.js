@@ -30,13 +30,24 @@ function logout() {
 }
 
 async function login(email, password) {
-    const response = await fetch(`${API_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-    });
+    let response;
+    try {
+        response = await fetch(`${API_URL}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+    } catch (networkError) {
+        throw new Error('No se pudo conectar con el servidor. ¿Está corriendo?');
+    }
 
-    const data = await response.json();
+    let data;
+    try {
+        data = await response.json();
+    } catch {
+        throw new Error('Error inesperado del servidor');
+    }
+
     if (!response.ok) {
         throw new Error(data.message || 'Error al iniciar sesión');
     }
@@ -46,15 +57,26 @@ async function login(email, password) {
 }
 
 async function register(nombre, email, password) {
-    const response = await fetch(`${API_URL}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, email, password }),
-    });
+    let response;
+    try {
+        response = await fetch(`${API_URL}/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, email, password }),
+        });
+    } catch (networkError) {
+        throw new Error('No se pudo conectar con el servidor. ¿Está corriendo?');
+    }
 
-    const data = await response.json();
+    let data;
+    try {
+        data = await response.json();
+    } catch {
+        throw new Error('Error inesperado del servidor');
+    }
+
     if (!response.ok) {
-        throw new Error(data.message || 'Error al registrarse');
+        throw new Error(data.message || 'Error al registrar usuario');
     }
 
     setToken(data.token);
@@ -69,10 +91,15 @@ async function fetchWithAuth(url, options = {}) {
         ...options.headers,
     };
 
-    const response = await fetch(`${API_URL}${url}`, {
-        ...options,
-        headers,
-    });
+    let response;
+    try {
+        response = await fetch(`${API_URL}${url}`, {
+            ...options,
+            headers,
+        });
+    } catch (networkError) {
+        throw new Error('No se pudo conectar con el servidor');
+    }
 
     if (response.status === 401) {
         removeToken();

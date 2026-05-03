@@ -230,7 +230,7 @@
                 await auth.login(email, password);
                 window.location.href = '/user/dashboard.html';
             } catch (err) {
-                errorDiv.textContent = err.message;
+                errorDiv.textContent = err.message || 'Error al iniciar sesión';
                 errorDiv.classList.remove('hidden');
                 btn.disabled = false;
                 btn.textContent = 'Iniciar Sesión';
@@ -266,7 +266,7 @@
                 await auth.register(nombreCompleto, email, password);
                 window.location.href = '/user/dashboard.html';
             } catch (err) {
-                errorDiv.textContent = err.message;
+                errorDiv.textContent = err.message || 'Error al crear la cuenta';
                 errorDiv.classList.remove('hidden');
                 btn.disabled = false;
                 btn.textContent = 'Registrarse';
