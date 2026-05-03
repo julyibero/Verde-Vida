@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - Verde Vida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/js/auth.js"></script>
+</head>
+<body class="bg-gray-50">
+    <script>auth.redirectIfNotLoggedIn();</script>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main content -->
+        <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold text-gray-900">Configuración de la Cuenta</h1>
+                <p class="text-gray-600 mt-1">Administra tu perfil, seguridad y notificaciones</p>
+            </div>
+
+            <!-- Tabs de navegación -->
+            <div class="bg-white rounded-lg shadow mb-6">
+                <nav class="flex border-b border-gray-200 overflow-x-auto">
+                    <button onclick="switchTab('perfil')" id="tab-perfil"
+                        class="tab-btn px-6 py-4 text-green-600 border-b-2 border-green-600 font-medium whitespace-nowrap">
+                        Perfil
+                    </button>
+                    <button onclick="switchTab('seguridad')" id="tab-seguridad"
+                        class="tab-btn px-6 py-4 text-gray-500 hover:text-gray-700 font-medium whitespace-nowrap">
+                        Seguridad
+                    </button>
+                    <button onclick="switchTab('notificaciones')" id="tab-notificaciones"
+                        class="tab-btn px-6 py-4 text-gray-500 hover:text-gray-700 font-medium whitespace-nowrap">
+                        Notificaciones
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Contenido -->
+            <div class="max-w-3xl">
+                <!-- Perfil -->
+                <div id="content-perfil" class="tab-content">
+                    <div class="bg-white rounded-lg shadow divide-y divide-gray-200">
+                        <div class="p-6">
+                            <h2 class="text-lg font-medium text-gray-900 mb-4">Información Personal</h2>
+                            <div class="flex items-center mb-6">
+                                <div class="h-20 w-20 rounded-full bg-green-100 flex items-center justify-center text-3xl">
+                                    🌱
+                                </div>
+                                <div class="ml-6">
+                                    <p class="text-sm text-gray-500 mb-1">Foto de perfil</p>
+                                    <button class="bg-white py-2 px-4 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                                        Cambiar foto
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                                    <input type="text" id="profileNombre" value=""
+                                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Apellidos</label>
+                                    <input type="text" id="profileApellidos" value=""
+                                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="profileEmail" value=""
+                                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+                                    <input type="tel" id="profileTelefono" placeholder="300 123 4567"
+                                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700">Ciudad</label>
+                                    <input type="text" id="profileCiudad" placeholder="Ej: Medellín"
+                                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seguridad -->
+                <div id="content-seguridad" class="tab-content hidden">
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-medium text-gray-900 mb-4">Cambiar Contraseña</h2>
+                        <div class="space-y-4 max-w-md">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Contraseña actual</label>
+                                <input type="password"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Nueva contraseña</label>
+                                <input type="password"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Confirmar nueva contraseña</label>
+                                <input type="password"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+                            <p class="text-xs text-gray-500">La contraseña debe tener al menos 6 caracteres.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notificaciones -->
+                <div id="content-notificaciones" class="tab-content hidden">
+                    <div class="bg-white rounded-lg shadow divide-y divide-gray-200">
+                        <div class="p-6">
+                            <h2 class="text-lg font-medium text-gray-900 mb-4">Preferencias de Notificaciones</h2>
+                            <div class="space-y-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-900">Recordatorios de riego</h3>
+                                        <p class="text-sm text-gray-500">Recibe notificaciones cuando tus plantas necesiten agua</p>
+                                    </div>
+                                    <button type="button" onclick="toggleSwitch(this)"
+                                        class="bg-green-600 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none">
+                                        <span class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+                                    </button>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-900">Actualizaciones de consultas</h3>
+                                        <p class="text-sm text-gray-500">Recibe notificaciones cuando respondan a tus consultas</p>
+                                    </div>
+                                    <button type="button" onclick="toggleSwitch(this)"
+                                        class="bg-green-600 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none">
+                                        <span class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+                                    </button>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-900">Tips y novedades</h3>
+                                        <p class="text-sm text-gray-500">Recibe consejos de jardinería y novedades de Verde Vida</p>
+                                    </div>
+                                    <button type="button" onclick="toggleSwitch(this)"
+                                        class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none">
+                                        <span class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <h2 class="text-lg font-medium text-gray-900 mb-4">Horario de Notificaciones</h2>
+                            <div class="max-w-xs">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Hora del recordatorio</label>
+                                <input type="time" value="08:00"
+                                    class="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                                <p class="mt-2 text-xs text-gray-500">Te enviaremos los recordatorios a esta hora.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="flex justify-end space-x-4 pt-6">
+                    <button type="button" class="px-4 py-2 text-gray-700 hover:bg-gray-50 border border-gray-300 rounded-md transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="button" onclick="guardarCambios()"
+                        class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                        Guardar cambios
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Cargar sidebar
+        fetch('/components/sidebar.html')
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById('sidebar-container').innerHTML = html;
+            });
+
+        // Cargar datos del usuario
+        auth.getMe().then(data => {
+            if (data && data.user) {
+                document.getElementById('profileNombre').value = data.user.nombre || '';
+                document.getElementById('profileEmail').value = data.user.email || '';
+                document.getElementById('profileTelefono').value = data.user.telefono || '';
+            }
+        }).catch(() => {});
+
+        // Tabs
+        function switchTab(tabName) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Mostrar el seleccionado
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+
+            // Actualizar estilos de tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-green-600', 'border-b-2', 'border-green-600');
+                btn.classList.add('text-gray-500');
+            });
+            const activeBtn = document.getElementById('tab-' + tabName);
+            activeBtn.classList.remove('text-gray-500');
+            activeBtn.classList.add('text-green-600', 'border-b-2', 'border-green-600');
+        }
+
+        // Toggle switch
+        function toggleSwitch(btn) {
+            const isOn = btn.classList.contains('bg-green-600');
+            const span = btn.querySelector('span');
+            if (isOn) {
+                btn.classList.remove('bg-green-600');
+                btn.classList.add('bg-gray-200');
+                span.classList.remove('translate-x-5');
+                span.classList.add('translate-x-0');
+            } else {
+                btn.classList.remove('bg-gray-200');
+                btn.classList.add('bg-green-600');
+                span.classList.remove('translate-x-0');
+                span.classList.add('translate-x-5');
+            }
+        }
+
+        function guardarCambios() {
+            alert('Cambios guardados (mock)');
+        }
+    </script>
+</body>
+</html>
